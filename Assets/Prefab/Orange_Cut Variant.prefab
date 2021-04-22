@@ -67,11 +67,27 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 100000, guid: be865c866973f4ea787dfe70efdd4c3f, type: 3}
       propertyPath: m_Name
-      value: Orange_Cut
+      value: Orange_Cut Variant
+      objectReference: {fileID: 0}
+    - target: {fileID: 100000, guid: be865c866973f4ea787dfe70efdd4c3f, type: 3}
+      propertyPath: m_TagString
+      value: Interactable
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: be865c866973f4ea787dfe70efdd4c3f, type: 3}
       propertyPath: m_RootOrder
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 400000, guid: be865c866973f4ea787dfe70efdd4c3f, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 2.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 400000, guid: be865c866973f4ea787dfe70efdd4c3f, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 2.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 400000, guid: be865c866973f4ea787dfe70efdd4c3f, type: 3}
+      propertyPath: m_LocalScale.z
+      value: 2.5
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: be865c866973f4ea787dfe70efdd4c3f, type: 3}
       propertyPath: m_LocalPosition.x

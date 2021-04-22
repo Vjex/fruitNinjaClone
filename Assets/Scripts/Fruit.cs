@@ -9,22 +9,26 @@ public class Fruit : MonoBehaviour
 
   
 
-    // Update is called once per frame
-    void Update()
-    {
-           //When User Hits Space Key Just Call The Method To Create Sliced Fruit Instance along With Destroy the Original Fruit.
-        if (Input.GetKeyDown(KeyCode.Space))
-        {
-            CreateSlicedFruit();
-        }
+    //// Update is called once per frame
+    //void Update()
+    //{
+    //       //When User Hits Space Key Just Call The Method To Create Sliced Fruit Instance along With Destroy the Original Fruit.
+    //    if (Input.GetKeyDown(KeyCode.Space))
+    //    {
+    //        CreateSlicedFruit();
+    //    }
         
-    }
+    //}
 
     //Method To Creaate The Sliced Fruit Instance From The Joint Fruit .
     public void CreateSlicedFruit()
     {
         //Instatiate the Cutted Fruit along With Get The Game Object Of That Instatiated Cutted Fruit Object To Add Some More Behaviour Like Explosion and Other Effects.
         GameObject newCuttGameObject = (GameObject)Instantiate(slicedFruitPrefab , transform.position , transform.rotation);
+
+
+        //Get The Game Manager Class and Call The Play Random Slice Sound As The Fruit is Sliced
+        FindObjectOfType<GameManager>().PlayRandomSliceSound();
 
 
         ////////////
@@ -48,9 +52,37 @@ public class Fruit : MonoBehaviour
 
         }
 
+
+        //Increase The Score Of Teh Game and pass The Score Point One On Cut of Orange
+        //This GameManager Class is assigned to a empty Object .
+        FindObjectOfType<GameManager>().IncreaseTheScore(1);
+
         //Now Destroy The Original Fruit After Instatntiating New Cut Fruit.
         //GameObject Is Inbuilt Var of The Object On Which This Script Will Be Added i.e Joint Orange Fruit here.
         Destroy(gameObject);
 
+        //After 5 seconds also Destroy the Cut Fruit Instatiated So that It Goes From Screen out Only Then otherwise There Will So many Cutted Fruit Object Will be in Background after some Time.
+        Destroy(newCuttGameObject, 5);
+      
     }
+
+
+    ///On trigger 2D With Blade Element We Will Call The Cut Fuit Method.
+    ///On trigger 2D is Used Other than OnCollider2D Because We Have IsTriiggered Enabled to both the Fruit
+    /////Prefab Of Orange Variant and Blade Under Circle Collission2D So that On Collision With Blade Only This Cut Fruit Method Is Called Not With any Other Fruit.
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        Blade b = collision.GetComponent<Blade>();
+
+        //Validating if Triggered Element/Component is Balde Or Not
+        if (!b)
+        {
+            return;
+        }
+
+        //Create Cut Frut Of That Element Only
+        CreateSlicedFruit();
+    }
+
+
 }
